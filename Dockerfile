@@ -4,13 +4,7 @@
 FROM centos:7
 MAINTAINER George Liu <https://github.com/centminmod/docker-centos7-memcached>
 # Setup Memcached
-RUN yum -y install epel-release nano which
-RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-RUN yum update -y
-RUN yum install -y memcached --enablerepo=remi
-RUN yum clean all
-RUN rm -rf /var/cache/*
-RUN echo "" > /var/log/yum.log
+RUN yum -y install epel-release nano which hostname && rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm && yum update -y && yum install -y memcached --enablerepo=remi && yum clean all && rm -rf /var/cache/* && echo "" > /var/log/yum.log
 
 # Expose 11211 to outside
 EXPOSE 11211
